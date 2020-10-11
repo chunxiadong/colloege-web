@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.college.dao.School_LeaderDao">
+    <select id="getAllLeader" resultType="com.college.domain.School_Leader">
+        select * from college_project.school_leader
+    </select>
+
+
+    <select id="getLeader" parameterType="map" resultType="com.college.domain.School_Leader">
+        select * from college_project.school_leader
+        <where>
+            <if test="leader_ID != null">
+                leader_ID=#{leader_ID}
+            </if>
+            <if test="leader_name != null">
+                and leader_name=#{leader_name}
+            </if>
+            <if test="leader_title != null">
+                and leader_title=#{leader_title}
+            </if>
+        </where>
+    </select>
+    <insert id="insertSchool_Leader" parameterType="map">
+        insert into college_project.school_leader (leader_work,leader_contact_unit,leader_email,leader_name,leader_office_location,leader_phone,leader_phone)
+        values (#{leader_work},#{leader_contact_unit},#{leader_email},#{leader_name},#{leader_office_location},#{leader_phone},#{leader_phone})
+    </insert>
+    <update id="updateSchool_Leader" parameterType="map">
+        update college_project.school_leader
+        <set>
+            <if test="leader_work != null">
+                leader_work=#{leader_work},
+            </if>
+            <if test="leader_contact_unit != null">
+                leader_contact_unit=#{leader_contact_unit},
+            </if>
+            <if test="leader_office_location != null">
+                leader_office_location=#{leader_office_location},
+            </if>
+            <if test="leader_phone != null">
+                leader_phone=#{leader_phone},
+            </if>
+            <if test="leader_email != null">
+                leader_email=#{leader_email}，
+            </if>
+            <if test="leader_name ！= null">
+                leader_name=#{leader_name},
+            </if>
+            <if test="leader_title != null">
+                leader_title=#{leader_title}
+            </if>
+        </set>
+        where leader_ID=#{leader_ID}
+    </update>
+
+    <delete id="deleteSchool_Leader" parameterType="map">
+        delete from college_project.school_leader
+        <where>
+            <if test="leader_ID != null">
+                leader_ID=#{leader_ID}
+            </if>
+            <if test="leader_name != null">
+                and leader_name=#{leader_name}
+            </if>
+            <if test="leader_title != null">
+                and leader_title=#{leader_title}
+            </if>
+        </where>
+    </delete>
+</mapper>

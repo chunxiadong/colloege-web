@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.college.dao.TeacherDao">
+    <select id="getTeacher" parameterType="map" resultType="com.college.domain.Teacher">
+        select * from college_project.school_teacher
+        <where>
+            <if test="teacherId != null">
+                teacherId=#{teacherId}
+            </if>
+            <if test="teacherName != null">
+                and teacherName=#{teacherName}
+            </if>
+            <if test="teacherTitle != null">
+                and teacherTitle=#{teacherTitle}
+            </if>
+        </where>
+    </select>
+
+
+    <select id="getAllTeacher" resultType="com.college.domain.Teacher">
+        select * from college_project.school_teacher
+    </select>
+
+    <insert id="insertTeacher" parameterType="map">
+        insert into college_project.school_teacher (teacherName,teacherTitle,teacherHonor,teacherTeam,teacherTeamTitle)
+        values (#{teacherName},#{teacherTitle},#{teacherHonor},#{teacherTeam},#{teacherTeamTitle})
+    </insert>
+
+    <delete id="deleteTeacher" parameterType="map">
+        delete from college_project.school_teacher
+        <where>
+            <if test="teacherId != null">
+                teacherId=#{teacherId}
+            </if>
+            <if test="teacherName != null">
+                and teacherName=#{teacherName}
+            </if>
+            <if test="teacherTitle != null">
+                and teacherTitle=#{teacherTitle}
+            </if>
+            <if test="teacherHonor != null">
+                and teacherHonor=#{teacherHonor}
+            </if>
+            <if test="teacherTeam != null">
+                and teacherTeam=#{teacherTeam}
+            </if>
+            <if test="teacherTeamTitle != null">
+                and teacherTeamTitle=#{teacherTeamTitle}
+            </if>
+        </where>
+    </delete>
+
+    <update id="updateTeacher" parameterType="map">
+        update college_project.school_teacher
+        <set>
+            <if test="teacherName != null">
+               teacherName=#{teacherName},
+            </if>
+            <if test="teacherTitle != null">
+               teacherTitle=#{teacherTitle},
+            </if>
+            <if test="teacherHonor != null">
+               teacherHonor=#{teacherHonor},
+            </if>
+            <if test="teacherTeam != null">
+               teacherTeam=#{teacherTeam},
+            </if>
+            <if test="teacherTeamTitle != null">
+                 teacherTeamTitle=#{teacherTeamTitle}
+            </if>
+        </set>
+        where teacherId=#{teacherId}
+    </update>
+</mapper>

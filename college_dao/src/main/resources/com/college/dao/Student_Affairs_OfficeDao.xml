@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.college.dao.Student_Affairs_OfficeDao">
+    <select id="getAllS_A_O" resultType="com.college.domain.Student_Affairs_Office">
+        select * from college_project.student_affairs_office
+    </select>
+
+    <select id="getS_A_O" parameterType="map" resultType="com.college.domain.Student_Affairs_Office">
+        select * from college_project.student_affairs_office
+        <where>
+            <if test="ID != null">
+               ID=#{ID}
+            </if>
+            <if test="name != null">
+                and name=#{name}
+            </if>
+            <if test="title != null">
+                and title=#{title}
+            </if>
+            <if test="phone != null">
+                and phone=#{phone}
+            </if>
+            <if test="location != null">
+                and location=#{location}
+            </if>
+            <if test="email != null">
+                and email=#{email}
+            </if>
+            <if test="motto != null">
+                and motto=#{motto}
+            </if>
+        </where>
+    </select>
+    <insert id="insertS_A_O" parameterType="map">
+        insert into college_project.student_affairs_office(name,title,location,email,motto,phone)
+        values (#{name},#{title},#{location},#{email},#{motto},#{phone})
+    </insert>
+    <update id="updateS_A_O" parameterType="map">
+        update college_project.student_affairs_office
+        <set>
+            <if test="name != null">
+                name=#{name},
+            </if>
+            <if test="title != null">
+                 title=#{title},
+            </if>
+            <if test="phone != null">
+               phone=#{phone},
+            </if>
+            <if test="location != null">
+                location=#{location},
+            </if>
+            <if test="email != null">
+                 email=#{email},
+            </if>
+            <if test="motto != null">
+                motto=#{motto}
+            </if>
+        </set>
+        where ID=#{ID}
+    </update>
+
+    <delete id="deleteS_A_O" parameterType="map">
+        delete from college_project.student_affairs_office
+        <where>
+            <if test="ID != null">
+                ID=#{ID}
+            </if>
+            <if test="name != null">
+                and name=#{name}
+            </if>
+            <if test="title != null">
+                and title=#{title}
+            </if>
+        </where>
+    </delete>
+</mapper>

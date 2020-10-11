@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.college.dao.Party_Affairs_OrganizationDao">
+    <select id="getAllP_A_O" resultType="com.college.domain.Party_Affairs_Organization">
+        select * from college_project.party_affairs_organization
+    </select>
+    <select id="getP_A_O" parameterType="map" resultType="com.college.domain.Party_Affairs_Organization">
+        select * from college_project.party_affairs_organization
+        <where>
+            <if test="party_ID != null">
+                party_ID=#{party_ID}
+            </if>
+            <if test="party_name != null">
+                and party_name=#{party_name}
+            </if>
+            <if test="party_honor != null">
+                and party_honor=#{party_honor}
+            </if>
+        </where>
+    </select>
+
+    <insert id="insertP_A_O" parameterType="map">
+        insert into college_project.party_affairs_organization (party_name,party_honor)
+        values (#{party_name},#{party_honor})
+    </insert>
+    <update id="updateP_A_O" parameterType="map">
+        update college_project.party_affairs_organization
+        <set>
+            <if test="party_name != null">
+                party_name=#{party_name},
+            </if>
+            <if test="party_honor != null">
+                party_honor=#{party_honor}
+            </if>
+        </set>
+        where party_ID=#{party_ID}
+    </update>
+    <delete id="deleteP_A_O" parameterType="map">
+        delete from college_project.party_affairs_organization
+        <where>
+            <if test="party_name != null">
+                   party_name=#{party_name}
+            </if>
+            <if test="party_honor != null">
+                and party_honor=#{party_honor}
+            </if>
+        </where>
+    </delete>
+</mapper>

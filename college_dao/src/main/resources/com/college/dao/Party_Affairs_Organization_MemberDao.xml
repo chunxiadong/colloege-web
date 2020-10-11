@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.college.dao.Party_Affairs_Organization_MemberDao">
+    <select id="getAll" resultType="com.college.domain.Party_Affairs_Organization_Member">
+        select * from college_project.party_affairs_organization_member
+    </select>
+    <select id="getSome" parameterType="map" resultType="com.college.domain.Party_Affairs_Organization_Member">
+        select * from college_project.party_affairs_organization_member
+        <where>
+            <if test="party_member_ID != null">
+                party_member_ID=#{party_member_ID}
+            </if>
+            <if test="party_member_name != null">
+               and party_member_name=#{party_member_name}
+            </if>
+            <if test="party_member_title != null">
+               and party_member_title=#{party_member_title}
+            </if>
+            <if test="belong_to_party != null">
+               and belong_to_party=#{belong_to_party}
+            </if>
+        </where>
+    </select>
+
+    <insert id="insert" parameterType="map">
+        insert into college_project.party_affairs_organization_member (party_member_name,party_member_title,party_member_title)
+        values (#{party_member_name},#{party_member_title},#{party_member_title})
+    </insert>
+    <update id="update" parameterType="map">
+        update college_project.party_affairs_organization_member
+        <set>
+            <if test="party_member_name != null">
+                 party_member_name=#{party_member_name},
+            </if>
+            <if test="party_member_title != null">
+                party_member_title=#{party_member_title},
+            </if>
+            <if test="belong_to_party != null">
+                 belong_to_party=#{belong_to_party}
+            </if>
+        </set>
+        where party_member_ID=#{party_member_ID}
+    </update>
+    <delete id="delete" parameterType="map">
+        delete from college_project.party_affairs_organization_member
+        <where>
+            <if test="party_member_ID != null">
+                party_member_ID=#{party_member_ID}
+            </if>
+            <if test="party_member_name != null">
+                and party_member_name=#{party_member_name}
+            </if>
+            <if test="party_member_title != null">
+                and party_member_title=#{party_member_title}
+            </if>
+            <if test="belong_to_party != null">
+                and belong_to_party=#{belong_to_party}
+            </if>
+        </where>
+    </delete>
+</mapper>

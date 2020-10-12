@@ -18,13 +18,12 @@
         </where>
     </select>
 
-
     <select id="getAllTeacher" resultType="com.college.domain.Teacher">
         select * from college_project.school_teacher
     </select>
 
     <insert id="insertTeacher" parameterType="map">
-        insert into college_project.school_teacher (teacherName,teacherTitle,teacherHonor,teacherTeam,teacherTeamTitle)
+        insert into college_project.school_teacher(teacherName,teacherTitle,teacherHonor,teacherTeam,teacherTeamTitle)
         values (#{teacherName},#{teacherTitle},#{teacherHonor},#{teacherTeam},#{teacherTeamTitle})
     </insert>
 
@@ -40,15 +39,6 @@
             <if test="teacherTitle != null">
                 and teacherTitle=#{teacherTitle}
             </if>
-            <if test="teacherHonor != null">
-                and teacherHonor=#{teacherHonor}
-            </if>
-            <if test="teacherTeam != null">
-                and teacherTeam=#{teacherTeam}
-            </if>
-            <if test="teacherTeamTitle != null">
-                and teacherTeamTitle=#{teacherTeamTitle}
-            </if>
         </where>
     </delete>
 
@@ -56,19 +46,19 @@
         update college_project.school_teacher
         <set>
             <if test="teacherName != null">
-               teacherName=#{teacherName},
+                teacherName=#{teacherName},
             </if>
             <if test="teacherTitle != null">
-               teacherTitle=#{teacherTitle},
+                teacherTitle=#{teacherTitle},
             </if>
             <if test="teacherHonor != null">
-               teacherHonor=#{teacherHonor},
+                teacherHonor=#{teacherHonor},
             </if>
             <if test="teacherTeam != null">
-               teacherTeam=#{teacherTeam},
+                teacherTeam=#{teacherTeam},
             </if>
             <if test="teacherTeamTitle != null">
-                 teacherTeamTitle=#{teacherTeamTitle}
+                teacherTeamTitle=#{teacherTeamTitle}
             </if>
         </set>
         where teacherId=#{teacherId}

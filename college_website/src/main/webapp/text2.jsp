@@ -20,6 +20,6 @@
     <input type="text" name="formatDate"/>更新时间
     <input type="submit" value="go">
 </form>
-<img src="http://localhost:8080/college/message/onloadImg/壁纸.jpg">
+<img src="http://localhost:8080/college/message/onloadImg/4.jpg">
 </body>
 </html>

@@ -157,7 +157,7 @@ public ResponseMessage deleteMessage(Message message){
     @RequestMapping("/uploadImg")
     public ResponseMessage<String> uploadImg(@RequestParam("file") CommonsMultipartFile file)throws IOException{
         //上传路径保存设置
-        String path ="E:\\idea\\projects\\college_project\\file\\img\\"+file.getOriginalFilename();
+        String path ="E:\\idea\\projects\\college_web_project\\file\\img\\"+file.getOriginalFilename();
         //保存图片到本项目中
         file.transferTo(new File(path));
         //返回图片URL
@@ -176,7 +176,7 @@ public ResponseMessage deleteMessage(Message message){
                             HttpServletResponse response) throws IOException {
         System.out.println(filename+suffix);
         SetLogUtil.setLog(MessageController.class).info("== 加载图片开始了 ==");
-        File imagefile=new File("E:\\idea\\projects\\college_project\\file\\img\\"+filename+"."+suffix);
+        File imagefile=new File("E:\\idea\\projects\\college_web_project\\file\\img\\"+filename+"."+suffix);
         ShowImg.responseFile(response,imagefile);
 //        ResponseMessage<Object> responseMessage = new ResponseMessage<>();
 //        return responseMessage.Success();

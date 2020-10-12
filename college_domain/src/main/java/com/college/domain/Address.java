@@ -10,7 +10,6 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 
-
 public class Address {
     private String address_name;//链接地址名
     private String address;//链接地址

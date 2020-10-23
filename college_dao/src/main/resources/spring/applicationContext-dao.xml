@@ -28,6 +28,19 @@
         <property name="dataSource" ref="dataSource"/>
         <!--扫描pojo包，给包下所有pojo对象起别名-->
         <property name="typeAliasesPackage" value="com.college.domain"/>
+        <!--分页-->
+        <property name="plugins">
+            <array>
+                <bean class="com.github.pagehelper.PageInterceptor">
+                    <property name="properties">
+                        <!--使用下面的方式配置参数，一行配置一个 -->
+                        <value>
+                            params=value1
+                        </value>
+                    </property>
+                </bean>
+            </array>
+        </property>
     </bean>
 
 

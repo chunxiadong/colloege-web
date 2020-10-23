@@ -4,6 +4,8 @@ import com.college.dao.MessageDao;
 import com.college.domain.Message;
 import com.college.service.MessageService;
 import com.college.utils.SetLogUtil;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -45,5 +47,14 @@ public class MessageServiceImpl implements MessageService {
     @Override
     public int updateMessage(Map map) {
         return messageDao.updateMessage(map);
+    }
+
+    @Override
+    public PageInfo<Message> getAllMessageByPage(Integer page, Integer rows) {
+        //分页
+        PageHelper.startPage(page,rows);
+        List<Message> list=messageDao.getAllMessage();//调用查询语句
+        PageInfo<Message> pageInfo=new PageInfo(list);
+        return  pageInfo;
     }
 }

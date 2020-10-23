@@ -38,5 +38,11 @@
     <input type="text" name="messageId"/>ID
     <input type="submit" value="upload">
 </form>
+<hr/>
+<form action="${pageContext.request.contextPath}/college/message/getAllMessageByPage" enctype="multipart/form-data" method="post">>
+    <input type="text" name="pageSize" value="1"/>pageSize
+    <input type="text" name="pageNumber" value="1"/>pageNumber
+    <input type="submit" value="go">
+</form>
 </body>
 </html>

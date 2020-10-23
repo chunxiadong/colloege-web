@@ -8,6 +8,8 @@ import com.college.utils.ShowImg;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.github.pagehelper.PageInfo;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,6 +29,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/college/message")
 public class MessageController{
+    private static Logger logger = Logger.getLogger(MessageController.class);
     static{
         SetLogUtil.setLog(MessageController.class).info("== 进入MessageController ==");
     }
@@ -202,5 +205,17 @@ public ResponseMessage deleteMessage(Message message){
             return responseMessage.False();
         }
        return responseMessage.Success();
+    }
+    @RequestMapping("/getAllMessageByPage")
+    public Map<String,Object> getAllMessageByPage(Integer pageSize, Integer pageNumber){
+        logger.info("获取分页");
+        //组装返回的数据
+        Map<String,Object> map=new HashMap<>();
+        PageInfo<Message> pageInfo=messageService.getAllMessageByPage(pageNumber,pageSize);
+        //填充总记录数
+        map.put("total",pageInfo.getTotal());
+        //填充当前页的记录
+        map.put("rows",pageInfo.getList());
+        return map;
     }
 }
